@@ -17,6 +17,8 @@ public:
         this->house = house;
         this->flat = flat;
     };
+  
+   
 
     std::string get_output_address() {
 
@@ -24,6 +26,10 @@ public:
     }
 };
 
+std::string* create_arr(int address_count) {
+    std::string* arr = new std::string[address_count]{};
+    return arr;
+}
 
 
 
@@ -39,10 +45,12 @@ int main(int argc, char* argv[])
     std::string flat;
     int address_count = 0;
     infile >> address_count;
-    Address* ad = new Address[address_count]; // массив для хранения адресов, 
-    for (int i = 0; i < address_count; i++) {
+   std::string* ad = create_arr(address_count); // массив для хранения адресов, 
+
+   for (int i = 0; i < address_count; i++) {
         infile >> city >> street >> house >> flat;
-        ad[i] = Address(city, street, house, flat);
+        Address adress(city, street, house, flat);
+        ad[i] = adress.get_output_address();
 
     }
 
@@ -50,8 +58,8 @@ int main(int argc, char* argv[])
     std::ofstream outfile("out.txt");
     outfile << address_count << std::endl;
     for (int i = 0; i < address_count; i++) {
-        outfile << ad[i].get_output_address() << std::endl;
+        outfile << ad[i] << std::endl;
     }
     delete[] ad;
-
+    infile.close();
 }
