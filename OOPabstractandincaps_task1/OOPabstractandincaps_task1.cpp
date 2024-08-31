@@ -10,7 +10,6 @@ private:
     std::string house;
     std::string flat;
 public:
-    Address() {};
     Address(std::string city, std::string street, std::string house, std::string flat) {
         this->city = city;
         this->street = street;
